@@ -19,12 +19,12 @@ public class Main {
         b2.next = b3;
         b3.next = c1;
         c1.next = c2;
-        System.out.println(getIntersectionNode(a1,b1));
+        System.out.println(getIntersection(a1, b1));
     }
 
     public static ListNode getIntersectionNode(ListNode headA, ListNode headB) {
         Set<ListNode> visitedNodes = new HashSet<>();
-        if(headA == null || headB == null){
+        if (headA == null || headB == null) {
             return null;
         }
         while (headA != null || headB != null) {
@@ -44,6 +44,21 @@ public class Main {
                     headB = headB.next;
                 }
             }
+        }
+        return null;
+    }
+
+    public static ListNode getIntersection(ListNode headA, ListNode headB) {
+        Set<ListNode> visitedNodes = new HashSet<>();
+        while (headA != null) {
+            visitedNodes.add(headA);
+            headA = headA.next;
+        }
+        while (headB != null) {
+            if (visitedNodes.contains(headB)) {
+                return headB;
+            }
+            headB = headB.next;
         }
         return null;
     }
